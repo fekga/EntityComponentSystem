@@ -1,6 +1,10 @@
 from entitycomponentsystem import *
 from dataclasses import *
 
+class TestEntity:
+    def __init__(self,*components):
+        self.components = components
+
 @dataclass
 class TestComponent_A:
     x : float = 0
@@ -56,10 +60,6 @@ class TestSystemC(System):
             a.x += 2 * dt
             b.y += 2 * dt
 
-class TestEntity:
-    def __init__(self,*components):
-        self.components = components
-
 class TestWorld(World):
     def __init__(self):
         super().__init__()
@@ -84,12 +84,13 @@ from hypothesis import *
 import hypothesis.strategies as st
 from math import isnan
 
+
 world = TestWorld()
 world.run()
 
 @given(st.floats())
 def test_world(dt):
-    assume(not isnan(dt))
+    #assume(not isnan(dt))
     world.update(dt)
     assert world.dt == dt
 

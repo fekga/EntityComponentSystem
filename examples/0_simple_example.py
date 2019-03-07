@@ -1,4 +1,3 @@
-import entitycomponentsystem
 from entitycomponentsystem import *
 from dataclasses import *
 
@@ -14,7 +13,6 @@ class TransformComponent:
 @dataclass
 class RenderComponent:
     size : float = 0
-
 
 @with_components(TransformComponent)
 class TransformSystem(System):
